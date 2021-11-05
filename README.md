@@ -1,6 +1,16 @@
 # classage
 
 An educational video conferencing classroom app.
+<br><br>
+![welcome](https://github.com/RaghvShukla/classage/blob/master/images/welcome.png)
+![agree](https://github.com/RaghvShukla/classage/blob/master/images/agree.png)
+![signup](https://github.com/RaghvShukla/classage/blob/master/images/signup.png)
+![teacher](https://github.com/RaghvShukla/classage/blob/master/images/teacher.png)
+![chats](https://github.com/RaghvShukla/classage/blob/master/images/chats.png)
+![library](https://github.com/RaghvShukla/classage/blob/master/images/library.png)
+![tests](https://github.com/RaghvShukla/classage/blob/master/images/tests.png)
+![drawer](https://github.com/RaghvShukla/classage/blob/master/images/drawer.png)
+![chatscreen](https://github.com/RaghvShukla/classage/blob/master/images/chatscreen.png)
 
 ## Getting Started
 
