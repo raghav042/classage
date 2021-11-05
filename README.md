@@ -1,6 +1,7 @@
 # classage
 
-An educational video conferencing classroom app.
+An educational video conferencing classroom app.<br>
+[download from play store](https://play.google.com/store/apps/details?id=com.myedumeet.classage)
 <br><br>
 ![welcome](https://github.com/RaghvShukla/classage/blob/master/images/welcome.png)
 ![agree](https://github.com/RaghvShukla/classage/blob/master/images/agree.png)
