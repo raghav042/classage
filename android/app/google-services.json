@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "454752875997",
+    "project_id": "causal-rite-318714",
+    "storage_bucket": "causal-rite-318714.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:454752875997:android:19bf586aaff7d44b8e3234",
+        "android_client_info": {
+          "package_name": "com.myedumeet.classage"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "454752875997-oj49tbv0i39chfh2phq1sjmged709uit.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.myedumeet.classage",
+            "certificate_hash": "886c9cc3315bd6a59dde87585e106b43737aac0a"
+          }
+        },
+        {
+          "client_id": "454752875997-1bec2jdqbtsn66odt76lf41vms5rt5mr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALu44kOqqFvI_l6drVChpEBVUrVQDVdLY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "454752875997-1bec2jdqbtsn66odt76lf41vms5rt5mr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
