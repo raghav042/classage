@@ -1,11 +1,11 @@
 import 'dart:async';
-import 'package:classage/intro/userAgreement.dart';
-import 'package:classage/userRegistration/Autheticate.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:classage/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Splashscreen extends StatefulWidget {
+  const Splashscreen({Key? key}) : super(key: key);
+
   @override
   SplashscreenState createState() => SplashscreenState();
 }
@@ -15,11 +15,13 @@ class SplashscreenState extends State<Splashscreen> {
   void initState() {
     super.initState();
     Timer(
-        Duration(milliseconds: 600),
-        () => Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(builder: (context) => Authenticate()),
-            (Route<dynamic> route) => false));
+      const Duration(milliseconds: 600),
+      () => Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => Authenticate()),
+        (Route<dynamic> route) => false,
+      ),
+    );
   }
 
   @override
@@ -38,25 +40,25 @@ class SplashscreenState extends State<Splashscreen> {
                 padding: const EdgeInsets.all(10.0),
                 child: Image.asset('assets/logo.PNG'),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 80,
               ),
               Text(
                 'Welcome to',
                 style: GoogleFonts.quicksand(
-                  textStyle: TextStyle(
+                  textStyle: const TextStyle(
                       fontSize: 25,
                       color: Colors.blueGrey,
                       fontWeight: FontWeight.w600),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               Text(
                 'classage',
                 style: GoogleFonts.quicksand(
-                  textStyle: TextStyle(
+                  textStyle: const TextStyle(
                       fontSize: 60,
                       color: Colors.lightBlueAccent,
                       fontWeight: FontWeight.w600),

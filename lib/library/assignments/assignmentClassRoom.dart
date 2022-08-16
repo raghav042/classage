@@ -1,19 +1,20 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AssignmentClassRoom extends StatefulWidget {
+  const AssignmentClassRoom({Key? key}) : super(key: key);
+
   @override
-  _AssignmentClassRoomState createState() => _AssignmentClassRoomState();
+  AssignmentClassRoomState createState() => AssignmentClassRoomState();
 }
 
-class _AssignmentClassRoomState extends State<AssignmentClassRoom> {
+class AssignmentClassRoomState extends State<AssignmentClassRoom> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Class_Name"),
+        title: const Text("Class_Name"),
       ),
-      body: Text("mhmhvm"),
+      body: const Text("mhmhvm"),
     );
   }
 }

@@ -2,27 +2,26 @@ import 'package:classage/classroom/ClassroomList.dart';
 import 'package:classage/classroom/message_tile.dart';
 import 'package:classage/classroom/utils.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Classroom extends StatefulWidget {
-  const Classroom({Key key, this.userName, this.subjectName}) : super(key: key);
+  const Classroom({Key? key, required this.userName, required this.subjectName}) : super(key: key);
 
   final String subjectName;
   final String userName;
 
   @override
-  _ClassroomState createState() => _ClassroomState();
+  ClassroomState createState() => ClassroomState();
 }
 
-class _ClassroomState extends State<Classroom> {
+class ClassroomState extends State<Classroom> {
   TextEditingController messageController = TextEditingController();
-  FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  String name;
-  String state;
-  String school;
-  String classroom;
+  late String name;
+  late String state;
+  late String school;
+  late String classroom;
 
   @override
   void initState() {
@@ -40,13 +39,13 @@ class _ClassroomState extends State<Classroom> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(widget.subjectName),
-        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.videocam))],
+        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.videocam))],
       ),
       body: Stack(
         children: [
-          Container(
+          SizedBox(
               height: MediaQuery.of(context).size.height - 160,
-              child: StreamBuilder(
+              child: StreamBuilder<QuerySnapshot>(
                 stream: _firestore
                     .collection('states')
                     .doc(state)
@@ -66,7 +65,7 @@ class _ClassroomState extends State<Classroom> {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return Center(
                       child: Row(
-                        children: [
+                        children: const [
                           CircularProgressIndicator(),
                           Text("Loading")
                         ],
@@ -74,13 +73,13 @@ class _ClassroomState extends State<Classroom> {
                     );
                   }
                   return ListView.builder(
-                    itemCount: snapshot.data.docs.length,
+                    itemCount: snapshot.data!.docs.length,
                     itemBuilder: (context, index) {
                       return MessageTile(
-                        message: snapshot.data.docs[index]['message'],
-                        sender: snapshot.data.docs[index]['sender'],
+                        message: snapshot.data!.docs[index]['message'],
+                        sender: snapshot.data!.docs[index]['sender'],
                         sentByMe: widget.userName ==
-                            snapshot.data.docs[index]["sender"],
+                            snapshot.data!.docs[index]["sender"],
                       );
                     },
                   );
@@ -124,16 +123,16 @@ class _ClassroomState extends State<Classroom> {
           width: MediaQuery.of(context).size.width - 75,
           child: TextField(
             controller: messageController,
-            style: TextStyle(color: Colors.black),
+            style: const TextStyle(color: Colors.black),
             decoration: InputDecoration(
                 hintText: "Send a message ...",
-                hintStyle: TextStyle(
+                hintStyle: const TextStyle(
                   color: Colors.black54,
                   fontSize: 16,
                 ),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(30),
-                  borderSide: BorderSide(width: 2),
+                  borderSide: const BorderSide(width: 2),
                 )),
           ),
         ),
@@ -142,7 +141,11 @@ class _ClassroomState extends State<Classroom> {
             sendMessage();
             messageController.clear();
           },
-          child: SizedBox(
+          style: ElevatedButton.styleFrom(
+            shape: const CircleBorder(),
+            padding: const EdgeInsets.all(6),
+          ),
+          child: const SizedBox(
               height: 40,
               width: 40,
               child: Icon(
@@ -150,10 +153,6 @@ class _ClassroomState extends State<Classroom> {
                 color: Colors.white,
                 size: 26,
               )),
-          style: ElevatedButton.styleFrom(
-            shape: CircleBorder(),
-            padding: EdgeInsets.all(6),
-          ),
         )
       ],
     );

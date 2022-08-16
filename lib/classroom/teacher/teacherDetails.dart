@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 
 class TeacherDetails extends StatefulWidget {
-  const TeacherDetails({Key key}) : super(key: key);
+  const TeacherDetails({Key? key}) : super(key: key);
 
   @override
-  _TeacherDetailsState createState() => _TeacherDetailsState();
+  TeacherDetailsState createState() => TeacherDetailsState();
 }
 
-class _TeacherDetailsState extends State<TeacherDetails> {
+class TeacherDetailsState extends State<TeacherDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("teacher_name"),
+        title: const Text("teacher_name"),
         actions: [
-          IconButton(icon: Icon(Icons.messenger_outline), onPressed: () {},),
-          SizedBox(width: 10),
-          IconButton(icon: Icon(Icons.more_vert), onPressed: () {},),
-          SizedBox(width: 10),
+          IconButton(icon: const Icon(Icons.messenger_outline), onPressed: () {},),
+          const SizedBox(width: 10),
+          IconButton(icon: const Icon(Icons.more_vert), onPressed: () {},),
+          const SizedBox(width: 10),
         ],
       ),
       body: Padding(
@@ -29,10 +29,10 @@ class _TeacherDetailsState extends State<TeacherDetails> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                CircleAvatar(radius: 55),
-                SizedBox(width: 10),
+                const CircleAvatar(radius: 55),
+                const SizedBox(width: 10),
                 Column(
-                  children: [
+                  children: const [
                     Text("27",
                         style: TextStyle(
                             fontSize: 24, fontWeight: FontWeight.bold)),
@@ -41,9 +41,9 @@ class _TeacherDetailsState extends State<TeacherDetails> {
                             fontSize: 16, fontWeight: FontWeight.w600))
                   ],
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 Column(
-                  children: [
+                  children: const [
                     Text("3",
                         style: TextStyle(
                             fontSize: 24, fontWeight: FontWeight.bold)),
@@ -52,9 +52,9 @@ class _TeacherDetailsState extends State<TeacherDetails> {
                             fontSize: 16, fontWeight: FontWeight.w600))
                   ],
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 Column(
-                  children: [
+                  children: const [
                     Text("150",
                         style: TextStyle(
                             fontSize: 24, fontWeight: FontWeight.bold)),
@@ -65,12 +65,12 @@ class _TeacherDetailsState extends State<TeacherDetails> {
                 ),
               ],
             ),
-            SizedBox(height: 10),
-            Text("first last name", style: TextStyle(fontSize: 17)),
-            Text("example@gmail.com", style: TextStyle(fontSize: 17)),
-            Text("ABC Public School", style: TextStyle(fontSize: 17)),
-            SizedBox(height: 20),
-            Text("Classes",
+            const SizedBox(height: 10),
+            const Text("first last name", style: TextStyle(fontSize: 17)),
+            const Text("example@gmail.com", style: TextStyle(fontSize: 17)),
+            const Text("ABC Public School", style: TextStyle(fontSize: 17)),
+            const SizedBox(height: 20),
+            const Text("Classes",
                 style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),
             //Text("9 ", style: TextStyle(fontSize: 17)),
           ],

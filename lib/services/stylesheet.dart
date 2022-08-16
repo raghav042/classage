@@ -1,11 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 Widget offPage(){
   return Container(
     height: 8,
     width: 24,
-    padding: EdgeInsets.all(8),
+    padding: const EdgeInsets.all(8),
     decoration: BoxDecoration(
         color: Colors.grey,
         borderRadius: BorderRadius.circular(12)
@@ -17,7 +16,7 @@ Widget onPage(){
   return Container(
     height: 10,
     width: 30,
-    padding: EdgeInsets.all(8),
+    padding: const EdgeInsets.all(8),
     decoration: BoxDecoration(
         color: Colors.lightBlue,
         borderRadius: BorderRadius.circular(12)
@@ -25,18 +24,18 @@ Widget onPage(){
   );
 }
 
-Widget topProgressIndicator(_width){
+Widget topProgressIndicator(width){
   return Align(
     alignment: Alignment.topLeft,
     child: Container(
       height: 5,
-      width: _width,
+      width: width,
       color: Colors.blue,
     ),
   );
 }
 
-InputDecoration textFieldDecoration(Icon prefixIcon){
+InputDecoration textFieldDecoration(Icon prefixIcon) {
   return InputDecoration(
     prefixIcon: prefixIcon,
     border: OutlineInputBorder(
@@ -45,5 +44,14 @@ InputDecoration textFieldDecoration(Icon prefixIcon){
     //     borderSide:
     //     BorderSide(color: Colors.blue, width: 2),
     //     borderRadius: BorderRadius.circular(12)),
+  );
+}
+
+mySnackBar(BuildContext context, content) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      backgroundColor: Colors.lightBlueAccent,
+      content: content,
+    ),
   );
 }

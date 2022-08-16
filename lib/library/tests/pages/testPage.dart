@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 class TestPage extends StatelessWidget {
 
-  List _color = [
+  final List _color = [
     Colors.green,
     Colors.blue,
     Colors.purple,
@@ -17,25 +17,27 @@ class TestPage extends StatelessWidget {
     Colors.green,
     Colors.brown
   ];
-  Random random = new Random();
+  Random random = Random();
   int index = 0;
+
+  TestPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('tests'),
+          title: const Text('tests'),
           elevation: 0,
         ),
         body: SafeArea(
           child: Stack(
             children: <Widget>[
               CustomScrollView(
-                physics: BouncingScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 slivers: <Widget>[
-                  SliverToBoxAdapter(
+                  const SliverToBoxAdapter(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
                       child: Text(
                         "Select a category & start the quiz",
                         style: TextStyle(
@@ -82,8 +84,8 @@ class TestPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           if (category.icon != null) Icon(category.icon, color: Colors.white,),
-          if (category.icon != null) SizedBox(height: 10.0),
-          Text(category.name, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),)
+          if (category.icon != null) const SizedBox(height: 10.0),
+          Text(category.name, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),)
         ],
       ),
     );

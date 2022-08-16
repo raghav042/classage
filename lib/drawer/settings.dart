@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Settings extends StatefulWidget {
+  const Settings({Key? key}) : super(key: key);
+
   @override
   SettingsState createState() => SettingsState();
 }
@@ -16,7 +18,7 @@ class SettingsState extends State<Settings> {
         title: Text(
           "Settings",
           style: GoogleFonts.quicksand(
-            textStyle: TextStyle(
+            textStyle: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 20,
             ),
@@ -27,11 +29,11 @@ class SettingsState extends State<Settings> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           ListTile(
-            leading: Icon(
+            leading: const Icon(
               Icons.account_box_outlined,
               color: Colors.blueGrey,
               size: 38,
@@ -39,22 +41,22 @@ class SettingsState extends State<Settings> {
             title: Text(
               "Account",
               style: GoogleFonts.quicksand(
-                textStyle: TextStyle(
+                textStyle: const TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 18,
                 ),
               ),
             ),
-            subtitle: Text("Privacy, Security"),
+            subtitle: const Text("Privacy, Security"),
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Account()),
+                MaterialPageRoute(builder: (context) => const Account()),
               );
             },
           ),
           ListTile(
-            leading: Icon(
+            leading: const Icon(
               Icons.settings_display_outlined,
               color: Colors.amber,
               size: 38,
@@ -62,17 +64,17 @@ class SettingsState extends State<Settings> {
             title: Text(
               "Display",
               style: GoogleFonts.quicksand(
-                textStyle: TextStyle(
+                textStyle: const TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 18,
                 ),
               ),
             ),
-            subtitle: Text("Wallpaper, dark theme "),
+            subtitle: const Text("Wallpaper, dark theme "),
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Display()),
+                MaterialPageRoute(builder: (context) => const Display()),
               );
             },
           ),
@@ -85,13 +87,13 @@ class SettingsState extends State<Settings> {
             title: Text(
               "Meetings",
               style: GoogleFonts.quicksand(
-                textStyle: TextStyle(
+                textStyle: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
                 ),
               ),
             ),
-            subtitle: Text("Time Limit, Recording"),
+            subtitle: const Text("Time Limit, Recording"),
             onTap: () {
               /*
               Navigator.push(
@@ -101,7 +103,7 @@ class SettingsState extends State<Settings> {
             },
           ),
           ListTile(
-            leading: Icon(
+            leading: const Icon(
               Icons.sd_storage_outlined,
               color: Colors.purple,
               size: 38,
@@ -109,32 +111,32 @@ class SettingsState extends State<Settings> {
             title: Text(
               "Storage",
               style: GoogleFonts.quicksand(
-                textStyle: TextStyle(
+                textStyle: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
                 ),
               ),
             ),
-            subtitle: Text("Location, "),
+            subtitle: const Text("Location, "),
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Storage()),
+                MaterialPageRoute(builder: (context) => const Storage()),
               );
             },
           ),
           ListTile(
-            leading: Icon(Icons.group_outlined, color: Colors.teal, size: 38),
+            leading: const Icon(Icons.group_outlined, color: Colors.teal, size: 38),
             title: Text(
               "Class",
               style: GoogleFonts.quicksand(
-                textStyle: TextStyle(
+                textStyle: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
                 ),
               ),
             ),
-            subtitle: Text("Add member, Import contacts"),
+            subtitle: const Text("Add member, Import contacts"),
             onTap: () {/*
               Navigator.push(
                 context,
@@ -143,7 +145,7 @@ class SettingsState extends State<Settings> {
             },
           ),
           ListTile(
-            leading: Icon(
+            leading: const Icon(
               Icons.help_center_outlined,
               color: Colors.black54,
               size: 38,
@@ -151,17 +153,17 @@ class SettingsState extends State<Settings> {
             title: Text(
               "Help",
               style: GoogleFonts.quicksand(
-                textStyle: TextStyle(
+                textStyle: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
                 ),
               ),
             ),
-            subtitle: Text("Privacy, Security"),
+            subtitle: const Text("Privacy, Security"),
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Help()),
+                MaterialPageRoute(builder: (context) => const Help()),
               );
             },
           ),
@@ -170,17 +172,17 @@ class SettingsState extends State<Settings> {
             title: Text(
               "About Us",
               style: GoogleFonts.quicksand(
-                textStyle: TextStyle(
+                textStyle: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
                 ),
               ),
             ),
-            subtitle: Text("Legal Information, "),
+            subtitle: const Text("Legal Information, "),
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => About()),
+                MaterialPageRoute(builder: (context) => const About()),
               );
             },
           ),
@@ -191,6 +193,8 @@ class SettingsState extends State<Settings> {
 }
 
 class Account extends StatefulWidget {
+  const Account({Key? key}) : super(key: key);
+
   @override
   AccountState createState() => AccountState();
 }
@@ -201,7 +205,7 @@ class AccountState extends State<Account> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
+        children: const <Widget>[
           Text("privacy"),
         ],
       ),
@@ -210,6 +214,8 @@ class AccountState extends State<Account> {
 }
 
 class Display extends StatefulWidget {
+  const Display({Key? key}) : super(key: key);
+
   @override
   DisplayState createState() => DisplayState();
 }
@@ -227,7 +233,7 @@ class DisplayState extends State<Display> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
+        children: const <Widget>[
           ExpansionTile(
             title: Text("Privacy"),
           )
@@ -275,6 +281,8 @@ class MeetingsState extends State<Meetings> {
  */
 
 class Storage extends StatefulWidget {
+  const Storage({Key? key}) : super(key: key);
+
   @override
   StorageState createState() => StorageState();
 }
@@ -292,7 +300,7 @@ class StorageState extends State<Storage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
+        children: const <Widget>[
           ExpansionTile(
             title: Text("Privacy"),
 
@@ -304,6 +312,8 @@ class StorageState extends State<Storage> {
 }
 
 class Help extends StatefulWidget {
+  const Help({Key? key}) : super(key: key);
+
   @override
   HelpState createState() => HelpState();
 }
@@ -321,7 +331,7 @@ class HelpState extends State<Help> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
+        children: const <Widget>[
           ExpansionTile(
             title: Text("Privacy"),
 
@@ -333,6 +343,8 @@ class HelpState extends State<Help> {
 }
 
 class About extends StatefulWidget {
+  const About({Key? key}) : super(key: key);
+
   @override
   AboutState createState() => AboutState();
 }
@@ -350,7 +362,7 @@ class AboutState extends State<About> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
+        children: const <Widget>[
           ExpansionTile(
             title: Text("Privacy"),
 

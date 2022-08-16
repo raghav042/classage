@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 
 FirebaseAuth _auth = FirebaseAuth.instance;
 final databaseReference = FirebaseFirestore.instance;
@@ -25,11 +24,11 @@ Future createClassroom(String state, String school, String classroom, String sub
       .doc(classroom)
       .set({
     'state': state,
-    'createdBy': _auth.currentUser.displayName,
+    'createdBy': _auth.currentUser!.displayName,
     'className': classroom.toUpperCase(),
     'createdAt': Timestamp.now(),
     'subjects': FieldValue.arrayUnion([subject]),
-    'members': FieldValue.arrayUnion([_auth.currentUser.displayName]),
+    'members': FieldValue.arrayUnion([_auth.currentUser!.displayName]),
   });
 
   await _firestore
@@ -42,14 +41,14 @@ Future createClassroom(String state, String school, String classroom, String sub
       .collection('subjects')
       .doc(subject)
       .set({
-    'createdBy': _auth.currentUser.displayName,
+    'createdBy': _auth.currentUser!.displayName,
     'createdAt': Timestamp.now(),
     'subject': subject,
     'recentMessage': '',
     'recentMessageSender': ''
   });
 
-  await _firestore.collection('users').doc(_auth.currentUser.uid).update({
+  await _firestore.collection('users').doc(_auth.currentUser!.uid).update({
     'profession': "Teacher",
     'school': school,
     'classroom': FieldValue.arrayUnion([classroom.toUpperCase()]),

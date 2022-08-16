@@ -1,4 +1,4 @@
-package com.myedumeet.classage
+package com.example.classage
 
 import io.flutter.embedding.android.FlutterActivity
 

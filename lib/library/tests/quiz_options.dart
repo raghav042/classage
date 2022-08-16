@@ -7,18 +7,17 @@ import 'package:classage/library/tests/api_provider.dart';
 import 'package:flutter/material.dart';
 
 class QuizOptionsDialog extends StatefulWidget {
+  const QuizOptionsDialog({Key? key, required this.category}) : super(key: key);
   final Category category;
-
-  const QuizOptionsDialog({Key key, this.category}) : super(key: key);
 
   @override
   _QuizOptionsDialogState createState() => _QuizOptionsDialogState();
 }
 
 class _QuizOptionsDialogState extends State<QuizOptionsDialog> {
-  int _noOfQuestions;
-  String _difficulty;
-  bool processing;
+  late int _noOfQuestions;
+  late String _difficulty;
+  late bool processing;
 
   @override
   void initState() {
@@ -39,11 +38,11 @@ class _QuizOptionsDialogState extends State<QuizOptionsDialog> {
             color: Colors.grey.shade200,
             child: Text(
               widget.category.name,
-              style: Theme.of(context).textTheme.caption.copyWith(),
+              style: Theme.of(context).textTheme.caption!.copyWith(),
             ),
           ),
-          SizedBox(height: 10.0),
-          Text("Select Total Number of Questions"),
+          const SizedBox(height: 10.0),
+          const Text("Select Total Number of Questions"),
           SizedBox(
             width: double.infinity,
             child: Wrap(
@@ -52,42 +51,42 @@ class _QuizOptionsDialogState extends State<QuizOptionsDialog> {
               runSpacing: 16.0,
               spacing: 16.0,
               children: <Widget>[
-                SizedBox(width: 0.0),
+                const SizedBox(width: 0.0),
                 ActionChip(
-                  label: Text("10"),
-                  labelStyle: TextStyle(color: Colors.white),
+                  label: const Text("10"),
+                  labelStyle: const TextStyle(color: Colors.white),
                   backgroundColor: _noOfQuestions == 10
                       ? Colors.indigo
                       : Colors.grey.shade600,
                   onPressed: () => _selectNumberOfQuestions(10),
                 ),
                 ActionChip(
-                  label: Text("20"),
-                  labelStyle: TextStyle(color: Colors.white),
+                  label: const Text("20"),
+                  labelStyle: const TextStyle(color: Colors.white),
                   backgroundColor: _noOfQuestions == 20
                       ? Colors.indigo
                       : Colors.grey.shade600,
                   onPressed: () => _selectNumberOfQuestions(20),
                 ),
                 ActionChip(
-                  label: Text("30"),
-                  labelStyle: TextStyle(color: Colors.white),
+                  label: const Text("30"),
+                  labelStyle: const TextStyle(color: Colors.white),
                   backgroundColor: _noOfQuestions == 30
                       ? Colors.indigo
                       : Colors.grey.shade600,
                   onPressed: () => _selectNumberOfQuestions(30),
                 ),
                 ActionChip(
-                  label: Text("40"),
-                  labelStyle: TextStyle(color: Colors.white),
+                  label: const Text("40"),
+                  labelStyle: const TextStyle(color: Colors.white),
                   backgroundColor: _noOfQuestions == 40
                       ? Colors.indigo
                       : Colors.grey.shade600,
                   onPressed: () => _selectNumberOfQuestions(40),
                 ),
                 ActionChip(
-                  label: Text("50"),
-                  labelStyle: TextStyle(color: Colors.white),
+                  label: const Text("50"),
+                  labelStyle: const TextStyle(color: Colors.white),
                   backgroundColor: _noOfQuestions == 50
                       ? Colors.indigo
                       : Colors.grey.shade600,
@@ -96,8 +95,8 @@ class _QuizOptionsDialogState extends State<QuizOptionsDialog> {
               ],
             ),
           ),
-          SizedBox(height: 20.0),
-          Text("Select Difficulty"),
+          const SizedBox(height: 20.0),
+          const Text("Select Difficulty"),
           SizedBox(
             width: double.infinity,
             child: Wrap(
@@ -106,34 +105,34 @@ class _QuizOptionsDialogState extends State<QuizOptionsDialog> {
               runSpacing: 16.0,
               spacing: 16.0,
               children: <Widget>[
-                SizedBox(width: 0.0),
+                const SizedBox(width: 0.0),
                 ActionChip(
-                  label: Text("Any"),
-                  labelStyle: TextStyle(color: Colors.white),
-                  backgroundColor: _difficulty == null
+                  label: const Text("Any"),
+                  labelStyle: const TextStyle(color: Colors.white),
+                  backgroundColor: _difficulty.isEmpty
                       ? Colors.indigo
                       : Colors.grey.shade600,
-                  onPressed: () => _selectDifficulty(null),
+                  onPressed: () => _selectDifficulty,
                 ),
                 ActionChip(
-                  label: Text("Easy"),
-                  labelStyle: TextStyle(color: Colors.white),
+                  label: const Text("Easy"),
+                  labelStyle: const TextStyle(color: Colors.white),
                   backgroundColor: _difficulty == "easy"
                       ? Colors.indigo
                       : Colors.grey.shade600,
                   onPressed: () => _selectDifficulty("easy"),
                 ),
                 ActionChip(
-                  label: Text("Medium"),
-                  labelStyle: TextStyle(color: Colors.white),
+                  label: const Text("Medium"),
+                  labelStyle: const TextStyle(color: Colors.white),
                   backgroundColor: _difficulty == "medium"
                       ? Colors.indigo
                       : Colors.grey.shade600,
                   onPressed: () => _selectDifficulty("medium"),
                 ),
                 ActionChip(
-                  label: Text("Hard"),
-                  labelStyle: TextStyle(color: Colors.white),
+                  label: const Text("Hard"),
+                  labelStyle: const TextStyle(color: Colors.white),
                   backgroundColor: _difficulty == "hard"
                       ? Colors.indigo
                       : Colors.grey.shade600,
@@ -142,14 +141,14 @@ class _QuizOptionsDialogState extends State<QuizOptionsDialog> {
               ],
             ),
           ),
-          SizedBox(height: 20.0),
+          const SizedBox(height: 20.0),
           processing
-              ? CircularProgressIndicator()
-              : RaisedButton(
-                  child: Text("Start Quiz"),
+              ? const CircularProgressIndicator()
+              : ElevatedButton(
+                  child: const Text("Start Quiz"),
                   onPressed: _startQuiz,
                 ),
-          SizedBox(height: 20.0),
+          const SizedBox(height: 20.0),
         ],
       ),
     );
@@ -176,36 +175,45 @@ class _QuizOptionsDialogState extends State<QuizOptionsDialog> {
           await getQuestions(widget.category, _noOfQuestions, _difficulty);
       Navigator.pop(context);
       if (questions.length < 1) {
-        Navigator.of(context).push(MaterialPageRoute(
-            builder: (_) => ErrorPage(
-                  message:
-                      "There are not enough questions in the category, with the options you selected.",
-                )));
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_) => const ErrorPage(
+              message:
+                  "There are not enough questions in the category, with the options you selected.",
+            ),
+          ),
+        );
         return;
       }
       Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (_) => QuizPage(
-                    questions: questions,
-                    category: widget.category,
-                  )));
+        context,
+        MaterialPageRoute(
+          builder: (_) => QuizPage(
+            questions: questions,
+            category: widget.category,
+          ),
+        ),
+      );
     } on SocketException catch (_) {
       Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-              builder: (_) => ErrorPage(
-                    message:
-                        "Can't reach the servers, \n Please check your internet connection.",
-                  )));
+        context,
+        MaterialPageRoute(
+          builder: (_) => const ErrorPage(
+            message:
+                "Can't reach the servers, \n Please check your internet connection.",
+          ),
+        ),
+      );
     } catch (e) {
-      print(e.message);
+      print(e);
       Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-              builder: (_) => ErrorPage(
-                    message: "Unexpected error trying to connect to the API",
-                  )));
+        context,
+        MaterialPageRoute(
+          builder: (_) => const ErrorPage(
+            message: "Unexpected error trying to connect to the API",
+          ),
+        ),
+      );
     }
     setState(() {
       processing = false;

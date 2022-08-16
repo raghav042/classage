@@ -1,8 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Dashboard extends StatefulWidget {
+  const Dashboard({Key? key}) : super(key: key);
+
   @override
   DashboardState createState() => DashboardState();
 }
@@ -15,14 +16,14 @@ class DashboardState extends State<Dashboard> {
           title: Text(
             "Dashboard",
             style: GoogleFonts.quicksand(
-              textStyle: TextStyle(
+              textStyle: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
               ),
             ),
           ),
           automaticallyImplyLeading: true,
-          actions: <Widget>[
+          actions: const <Widget>[
             IconButton(icon: Icon(Icons.home), onPressed: null),
           ],
         ),
@@ -30,8 +31,8 @@ class DashboardState extends State<Dashboard> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              SizedBox(height: 6),
-              Container(
+              const SizedBox(height: 6),
+              SizedBox(
                 height: MediaQuery.of(context).size.width + 20,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
@@ -55,7 +56,7 @@ class DashboardState extends State<Dashboard> {
                                 child: Text(
                                   "Score(Marks)",
                                   style: GoogleFonts.quicksand(
-                                    textStyle: TextStyle(
+                                    textStyle: const TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.w800,
                                     ),
@@ -76,7 +77,7 @@ class DashboardState extends State<Dashboard> {
                                 child: Text(
                                   "Schedule",
                                   style: GoogleFonts.quicksand(
-                                    textStyle: TextStyle(
+                                    textStyle: const TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.w800,
                                     ),
@@ -98,7 +99,7 @@ class DashboardState extends State<Dashboard> {
                             child: Text(
                               "Library",
                               style: GoogleFonts.quicksand(
-                                textStyle: TextStyle(
+                                textStyle: const TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.w800,
                                 ),
@@ -123,7 +124,7 @@ class DashboardState extends State<Dashboard> {
                         child: Text(
                           "Report Card",
                           style: GoogleFonts.quicksand(
-                            textStyle: TextStyle(
+                            textStyle: const TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w800,
                             ),
@@ -149,7 +150,7 @@ class DashboardState extends State<Dashboard> {
                   child: Text(
                     "Attendance",
                     style: GoogleFonts.quicksand(
-                      textStyle: TextStyle(
+                      textStyle: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w800,
                       ),

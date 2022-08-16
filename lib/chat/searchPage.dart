@@ -4,14 +4,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class SearchPage extends StatefulWidget {
-  const SearchPage({Key key}) : super(key: key);
+  const SearchPage({Key? key}) : super(key: key);
 
   @override
-  _SearchPageState createState() => _SearchPageState();
+  SearchPageState createState() => SearchPageState();
 }
 
-class _SearchPageState extends State<SearchPage> with WidgetsBindingObserver {
-  Map<String, dynamic> userMap;
+class SearchPageState extends State<SearchPage> with WidgetsBindingObserver {
+  Map<String, dynamic>? userMap;
   bool isLoading = false;
   final TextEditingController _search = TextEditingController();
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -25,7 +25,7 @@ class _SearchPageState extends State<SearchPage> with WidgetsBindingObserver {
   }
 
   void setStatus(String status) async {
-    await _firestore.collection('users').doc(_auth.currentUser.uid).update({
+    await _firestore.collection('users').doc(_auth.currentUser!.uid).update({
       "status": status,
     });
   }
@@ -77,14 +77,14 @@ class _SearchPageState extends State<SearchPage> with WidgetsBindingObserver {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("search any contact"),
+        title: const Text("search any contact"),
       ),
       body: isLoading
           ? Center(
-              child: Container(
+              child: SizedBox(
                 height: size.height / 20,
                 width: size.height / 20,
-                child: CircularProgressIndicator(),
+                child: const CircularProgressIndicator(),
               ),
             )
           : Column(
@@ -93,7 +93,7 @@ class _SearchPageState extends State<SearchPage> with WidgetsBindingObserver {
                   height: size.height / 10,
                   width: size.width,
                   alignment: Alignment.center,
-                  padding: EdgeInsets.all(12),
+                  padding: const EdgeInsets.all(12),
                   child: TextField(
                     controller: _search,
                     decoration: InputDecoration(
@@ -109,7 +109,7 @@ class _SearchPageState extends State<SearchPage> with WidgetsBindingObserver {
                 ),
                 ElevatedButton(
                   onPressed: onSearch,
-                  child: Text("Search"),
+                  child: const Text("Search"),
                 ),
                 SizedBox(
                   height: size.height / 30,
@@ -117,28 +117,29 @@ class _SearchPageState extends State<SearchPage> with WidgetsBindingObserver {
                 userMap != null
                     ? Container(
                         height: 150,
-                        margin: EdgeInsets.all(12),
-                        padding: EdgeInsets.symmetric(vertical: 12),
+                        margin: const EdgeInsets.all(12),
+                        padding: const EdgeInsets.symmetric(vertical: 12),
                         decoration: BoxDecoration(
                             color: Colors.blue[50],
                             borderRadius: BorderRadius.circular(25),
-                            boxShadow: [
+                            boxShadow: const [
                               BoxShadow(
                                   spreadRadius: 3,
                                   blurRadius: 2,
-                                  color: Colors.grey[300],
+                                  color: Colors.grey,
                                   offset: Offset(2, 3))
                             ]),
                         child: ListTile(
                           onTap: () {
                             String roomId = chatRoomId(
-                                _auth.currentUser.displayName, userMap['name']);
+                                _auth.currentUser!.displayName!,
+                                userMap!['name']);
 
                             Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (_) => ChatRoom(
                                   chatRoomId: roomId,
-                                  userMap: userMap,
+                                  userMap: userMap!,
                                 ),
                               ),
                             );
@@ -152,16 +153,16 @@ class _SearchPageState extends State<SearchPage> with WidgetsBindingObserver {
                                 width: 75,
                               )),
                           title: Text(
-                            userMap['name'],
-                            style: TextStyle(
+                            userMap!['name'],
+                            style: const TextStyle(
                               color: Colors.black,
                               fontSize: 20,
                             ),
                           ),
-                          subtitle: Text(userMap['email']),
+                          subtitle: Text(userMap!['email']),
                         ),
                       )
-                    : Text("no match found"),
+                    : const Text("no match found"),
               ],
             ),
     );

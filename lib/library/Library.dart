@@ -1,14 +1,15 @@
 import 'package:classage/classroom/teacher/teacherDetails.dart';
 import 'package:classage/library/tests/pages/testPage.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Library extends StatefulWidget {
+  const Library({Key? key}) : super(key: key);
+
   @override
-  _LibraryState createState() => _LibraryState();
+  LibraryState createState() => LibraryState();
 }
 
-class _LibraryState extends State<Library> {
+class LibraryState extends State<Library> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +19,7 @@ class _LibraryState extends State<Library> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             topContainer(context),
-            SizedBox(height: 50),
+            const SizedBox(height: 50),
             bottomContainer(context)
           ],
         ),
@@ -31,17 +32,17 @@ Widget bigButton(onPressed, color, text, width) {
   return Container(
     width: width,
     height: 160,
-    padding: EdgeInsets.symmetric(vertical: 8),
+    padding: const EdgeInsets.symmetric(vertical: 8),
     child: ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
           primary: color,
           shape: RoundedRectangleBorder(
-            borderRadius: new BorderRadius.circular(20.0),
+            borderRadius: BorderRadius.circular(20.0),
           )),
       child: Text(
         text,
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 22,
         ),
       ),
@@ -52,7 +53,7 @@ Widget bigButton(onPressed, color, text, width) {
 Widget smallButton(onPressed, color, icon, text) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
-    child: Container(
+    child: SizedBox(
       height: 80,
       width: 80,
       child: ElevatedButton(
@@ -60,7 +61,7 @@ Widget smallButton(onPressed, color, icon, text) {
         style: ElevatedButton.styleFrom(
             primary: color,
             shape: RoundedRectangleBorder(
-              borderRadius: new BorderRadius.circular(20.0),
+              borderRadius: BorderRadius.circular(20.0),
             )),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -75,7 +76,7 @@ Widget topContainer(BuildContext context) {
   return Container(
     width: double.infinity,
     height: 510,
-    padding: EdgeInsets.all(16),
+    padding: const EdgeInsets.all(16),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
@@ -109,7 +110,7 @@ Widget bottomContainer(BuildContext context) {
     children: [
       smallButton((){Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => TeacherDetails()),
+        MaterialPageRoute(builder: (context) => const TeacherDetails()),
       );}, Colors.blue[50], Icons.videocam, "video"),
       smallButton((){}, Colors.purple[50], Icons.graphic_eq, "graph"),
       smallButton((){}, Colors.teal[50], Icons.analytics_outlined, "statics"),

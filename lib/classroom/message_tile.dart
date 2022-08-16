@@ -1,14 +1,15 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 class MessageTile extends StatelessWidget {
+  const MessageTile({
+    required this.message,
+    required this.sender,
+    required this.sentByMe,
+  });
 
   final String message;
   final String sender;
   final bool sentByMe;
-
-  MessageTile({this.message, this.sender, this.sentByMe});
 
   @override
   Widget build(BuildContext context) {
@@ -18,15 +19,15 @@ class MessageTile extends StatelessWidget {
       alignment: sentByMe ? Alignment.centerRight : Alignment.centerLeft,
       child: Container(
         margin:
-            sentByMe ? EdgeInsets.only(left: 30) : EdgeInsets.only(right: 30),
-        padding: EdgeInsets.only(top: 17, bottom: 17, left: 20, right: 20),
+            sentByMe ? const EdgeInsets.only(left: 30) : const EdgeInsets.only(right: 30),
+        padding: const EdgeInsets.only(top: 17, bottom: 17, left: 20, right: 20),
         decoration: BoxDecoration(
           borderRadius: sentByMe
-              ? BorderRadius.only(
+              ? const BorderRadius.only(
                   topLeft: Radius.circular(25),
                   topRight: Radius.circular(25),
                   bottomLeft: Radius.circular(25))
-              : BorderRadius.only(
+              : const BorderRadius.only(
                   topLeft: Radius.circular(25),
                   topRight: Radius.circular(25),
                   bottomRight: Radius.circular(25)),
@@ -38,20 +39,20 @@ class MessageTile extends StatelessWidget {
             Text(sender.toUpperCase(),
                 textAlign: TextAlign.start,
                 style: sentByMe
-                    ? TextStyle(
+                    ? const TextStyle(
                         fontSize: 14.0,
                         fontWeight: FontWeight.bold,
                         color: Colors.pink,
                         letterSpacing: -0.5)
-                    : TextStyle(
+                    : const TextStyle(
                         fontSize: 14.0,
                         fontWeight: FontWeight.bold,
                         color: Colors.blue,
                         letterSpacing: -0.5)),
-            SizedBox(height: 7.0),
+            const SizedBox(height: 7.0),
             Text(message,
                 textAlign: TextAlign.start,
-                style: TextStyle(fontSize: 17.0, color: Colors.black))
+                style: const TextStyle(fontSize: 17.0, color: Colors.black))
           ],
         ),
       ),

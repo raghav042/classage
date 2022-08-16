@@ -1,27 +1,26 @@
-import 'package:classage/chat/ChatRoom.dart';
 import 'package:classage/classroom/utils.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class ChatPage extends StatefulWidget {
-  const ChatPage({Key key}) : super(key: key);
+  const ChatPage({Key? key}) : super(key: key);
 
   @override
-  _ChatPageState createState() => _ChatPageState();
+  ChatPageState createState() => ChatPageState();
 }
 
-class _ChatPageState extends State<ChatPage> with WidgetsBindingObserver {
-  Map<String, dynamic> userMap;
+class ChatPageState extends State<ChatPage> with WidgetsBindingObserver {
+  late Map<String, dynamic> userMap;
   bool isLoading = false;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  String state;
-  String school;
-  String classroom;
-  String subject;
-  List<String> members;
+  late String state;
+  late String school;
+  late String classroom;
+  String? subject;
+  List<String>? members;
 
   @override
   void initState() {
@@ -37,7 +36,7 @@ class _ChatPageState extends State<ChatPage> with WidgetsBindingObserver {
   }
 
   void setStatus(String status) async {
-    await _firestore.collection('users').doc(_auth.currentUser.uid).update({
+    await _firestore.collection('users').doc(_auth.currentUser!.uid).update({
       "status": status,
     });
   }
@@ -70,21 +69,20 @@ class _ChatPageState extends State<ChatPage> with WidgetsBindingObserver {
         backgroundColor: Colors.white,
         body: isLoading
             ? Center(
-                child: Container(
+                child: SizedBox(
                   height: size.height / 20,
                   width: size.height / 20,
-                  child: CircularProgressIndicator(),
+                  child: const CircularProgressIndicator(),
                 ),
               )
-            : Container(
-                child: Center(
-                child: ElevatedButton(
-                  onPressed: () async {
-                    await showClassmates();
-                  },
-                  child: Text("show classmates"),
-                ),
-              ))
+            : Center(
+            child: ElevatedButton(
+              onPressed: () async {
+                await showClassmates();
+              },
+              child: const Text("show classmates"),
+            ),
+              )
         /*: FutureBuilder(
                 future: FirebaseFirestore.instance.collection('states').doc(state).collection('schools').doc(school).collection('classrooms').doc(classroom).get(),
                 builder: (BuildContext context,
@@ -104,7 +102,7 @@ class _ChatPageState extends State<ChatPage> with WidgetsBindingObserver {
         );
   }
 
-  Future showClassmates() {
+  Future showClassmates() async{
     FirebaseFirestore.instance
         .collection('states')
         .doc(state)

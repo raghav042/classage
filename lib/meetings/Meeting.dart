@@ -1,42 +1,52 @@
 import 'dart:io';
 import 'package:classage/classroom/utils.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:jitsi_meet/jitsi_meet.dart';
 
 class Meeting extends StatefulWidget {
+  const Meeting({Key? key}) : super(key: key);
+
   @override
-  _MeetingState createState() => _MeetingState();
+  MeetingState createState() => MeetingState();
 }
 
-class _MeetingState extends State<Meeting> {
+class MeetingState extends State<Meeting> {
+  User? user = FirebaseAuth.instance.currentUser;
+
   final serverText = TextEditingController();
   //final roomText = TextEditingController(text: "plugintestroom");
-  final iosAppBarRGBAColor = TextEditingController(text: "#0080FF80"); //transparent blue
+  final iosAppBarRGBAColor =
+      TextEditingController(text: "#0080FF80"); //transparent blue
   bool isAudioOnly = true;
   bool isAudioMuted = true;
   bool isVideoMuted = true;
 
-  String name;
-  String email;
-  String subject;
-  String classroom;
+  late String name;
+  late String email;
+  late String photoUrl;
+  late String subject;
+  late String classroom;
 
   @override
   void initState() {
     super.initState();
 
-    name = UserPreferences.getUserName() ?? '';
+    name = user!.displayName ?? '';
+    email = user!.email ?? '';
+    photoUrl = user!.photoURL ?? '';
     classroom = UserPreferences.getUserClassroom() ?? '';
     subject = UserPreferences.getUserSubject() ?? '';
-    email = UserPreferences.getUserEmail() ?? '';
 
-    JitsiMeet.addListener(JitsiMeetingListener(
+    JitsiMeet.addListener(
+      JitsiMeetingListener(
         onConferenceWillJoin: _onConferenceWillJoin,
         onConferenceJoined: _onConferenceJoined,
         onConferenceTerminated: _onConferenceTerminated,
-        onError: _onError));
+        onError: _onError,
+      ),
+    );
   }
 
   @override
@@ -47,7 +57,6 @@ class _MeetingState extends State<Meeting> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.white,
       body: meetConfig(),
@@ -61,7 +70,7 @@ class _MeetingState extends State<Meeting> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 12.0),
             child: CheckboxListTile(
-              title: Text("Audio Only"),
+              title: const Text("Audio Only"),
               value: isAudioOnly,
               onChanged: _onAudioOnlyChanged,
             ),
@@ -69,7 +78,7 @@ class _MeetingState extends State<Meeting> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 12.0),
             child: CheckboxListTile(
-              title: Text("Audio Muted"),
+              title: const Text("Audio Muted"),
               value: isAudioMuted,
               onChanged: _onAudioMutedChanged,
             ),
@@ -77,12 +86,12 @@ class _MeetingState extends State<Meeting> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 12.0),
             child: CheckboxListTile(
-              title: Text("Video Muted"),
+              title: const Text("Video Muted"),
               value: isVideoMuted,
               onChanged: _onVideoMutedChanged,
             ),
           ),
-          Divider(
+          const Divider(
             height: 48.0,
             thickness: 2.0,
           ),
@@ -93,16 +102,16 @@ class _MeetingState extends State<Meeting> {
               onPressed: () {
                 joinMeeting();
               },
-              child: Text(
-                "Join Meeting",
-                style: TextStyle(color: Colors.white),
-              ),
               style: ButtonStyle(
                   backgroundColor:
                       MaterialStateColor.resolveWith((states) => Colors.blue)),
+              child: const Text(
+                "Join Meeting",
+                style: TextStyle(color: Colors.white),
+              ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 48.0,
           ),
         ],
@@ -110,26 +119,26 @@ class _MeetingState extends State<Meeting> {
     );
   }
 
-  _onAudioOnlyChanged(bool value) {
+  _onAudioOnlyChanged(value) {
     setState(() {
       isAudioOnly = value;
     });
   }
 
-  _onAudioMutedChanged(bool value) {
+  _onAudioMutedChanged(value) {
     setState(() {
       isAudioMuted = value;
     });
   }
 
-  _onVideoMutedChanged(bool value) {
+  _onVideoMutedChanged(value) {
     setState(() {
       isVideoMuted = value;
     });
   }
 
   joinMeeting() async {
-    String serverUrl = serverText.text.trim().isEmpty ? null : serverText.text;
+    String? serverUrl = serverText.text.trim().isEmpty ? null : serverText.text;
 
     // Enable or disable any feature flag here
     // If feature flag are not provided, default values will be used
